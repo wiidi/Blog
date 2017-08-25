@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+博客撰写界面
+<form action="/blog1/write/" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="提交">
+</form>
+<form action="http://127.0.0.1:8000/blog1/index/" >
+    <input type="submit" value="博客主页">
+</form>
+</body>
+</html>

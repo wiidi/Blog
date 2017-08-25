@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+</head>
+<body>
+register
+    <form action="http://127.0.0.1:8000/people/login/">
+        <input type="submit" value="登陆">
+    </form>
+</br>
+
+    <form action="http://127.0.0.1:8000/people/register/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="注册">
+    </form>
+
+</br>
+
+    <form action="http://127.0.0.1:8000/">
+        <input type="submit" value="主页">
+    </form>
+
+</body>
+</html>
