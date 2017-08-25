@@ -7,7 +7,7 @@ from django import forms
 class BlogFrom(forms.ModelForm):
     title = forms.CharField(label='标题',required=True)
     content = forms.Textarea()
-    auth = forms.CharField(label='作者' ,required=True) # widget=forms.Passwd
+    auth = forms.CharField(label='作者' ,required=True) # widget=forms.Passwoed()
     class Meta:
         model = models.Article
         fields=('title','content','auth')
@@ -15,7 +15,8 @@ class BlogFrom(forms.ModelForm):
 def showBlogs(request):
 
     # article = models.Article.objects.get(pk=1)
-    article='wudi'
+    article = models.Article.objects.all()
+    # article='wudi'
     return render(request,'blog1/index.html',{"article":article})
     # return HttpResponse("blog")
 
@@ -24,7 +25,7 @@ def writeBlogs(request):
         form = BlogFrom(request.POST)
         if form.is_valid():
             form.save(commit=True)
-            return render(request,'blog1/write_answer.html',{'write_answer':'写入成功！'})
+            return render(request,'blog1/write_answer.html',{'write_answer':form})
         else:
             print(form.errors)
             error = form.errors

@@ -6,12 +6,12 @@
 </head>
 <body>
 login
-    <form action="http://127.0.0.1:8000/people/register/">
+    <form action="/people/register/">
         <input type="submit" value="注册">
     </form>
 </br>
 
-    <form action="http://127.0.0.1:8000/people/login/" method="POST">
+    <form action="/people/login/" method="POST">
         {% csrf_token %}
         {{ form }}
         <input type="submit" value="登陆">
@@ -21,6 +21,12 @@ login
     <form action="http://127.0.0.1:8000/">
         <input type="submit" value="主页">
     </form>
+</br>
+{#    <form action="/people/login/" method="GET">#}
+{##}
+{#        <input type="text" name="username">#}
+{#        <input type="submit" value="提交">#}
+{#    </form>#}
 
 </body>
 </html>
