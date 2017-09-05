@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
 import os
+import django.contrib.staticfiles
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,7 +26,7 @@ SECRET_KEY = '3@9rl-z7z&_jjng2%y_z(81e7#v2n8#fwyp)&9d4w9=5=mxgw$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+# DEBUG = Fasslse
 ALLOWED_HOSTS = []
 
 
@@ -45,7 +47,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -57,7 +59,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR,"template")
+            os.path.join(BASE_DIR,"template").replace('\\','/')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -108,9 +110,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/dev/topics/i18n/
 
 # 英语
-# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-us'
 # 中文
-LANGUAGE_CODE = 'zh_hans'
+#LANGUAGE_CODE = 'zh_hans'
 
 TIME_ZONE = 'UTC'
 
@@ -123,5 +125,25 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
+# CURRENT_PATH = os.path.abspath(os.path.dirname(__file__).decode('utf-8')).replace('\\', '/')
 
+STATIC_ROOT = ''
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(os.path.dirname(__file__), '../static/').replace('\\','/'),
+)
+
+# STATIC_URL = '/static/'
+# STATICFILES_DIR = (
+#     os.path.join(BASE_DIR,'static')
+# )
+# STATICFILES_DIRS = (
+#  os.path.join(BASE_DIR, "static/css"),
+# )
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+# STATICFILES_FINDERS = (
+#  'django.contrib.staticfiles.finders.FileSystemFinder',
+#  'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#  # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
+# )
+# STATIC_ROOT = os.path.join( BASE_DIR, 'static')

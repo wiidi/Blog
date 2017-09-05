@@ -1,0 +1,37 @@
+{% extends './basic_page.html' %}
+
+{% block article_title %}
+    写文章 ---blog
+{% endblock article_title %}
+
+{% block topHeader %}
+    <li><a href="/blog1/edit/{{ article.id }}"></a></li>
+    <li><a href="/blog1/index/">首页</a></li>
+    {#        <li><a href="/blog1/write/">写文章</a></li>#}
+
+    {#        <li>注册</li>#}
+    {#        <li>登录</li>#}
+
+{% endblock topHeader %}
+
+{% block title %}
+    <input class="title mousetrap" name="note_title" id="note_title" value="无标题文章">
+{% endblock title %}
+
+{% block auth %}
+    作者： {{ article.auth }}
+{% endblock auth %}
+{#            pre缩进问题，如果不这样写，前面会出现空格和换行#}
+{% block content %}
+
+    <div class="editor" class="kalamu-box">
+        <div class="kalamu-area mousetrap" contenteditable="true" style=" height: 213px">
+            <p>
+                <br>
+            </p>
+        </div>
+    </div>{% endblock content %}
+
+{% block copyright %}
+    {{ bloack.super }}
+{% endblock copyright %}

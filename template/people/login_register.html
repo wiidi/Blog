@@ -1,0 +1,74 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-type" content="text/html;charset=utf-8"/>
+    <title>登录页</title>
+    <script type="text/javascript" src="../../../static/js/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="../../../static/css/people/login_register.css" type="text/css">
+</head>
+
+<body>
+<div class="mainBody">
+    <div class="index-header">
+        <h1 class="logo">Blog</h1>
+        <h2 class="subtitle">与大家分享你的知识、经验和见解</h2>
+    </div>
+    <div class="login">
+        <a href="javascript:void(0)" onclick="loginIn()" class="active">登录</a>
+        <a href="javascript:void(0)" onclick="register()">注册</a>
+
+    </div>
+    <div id="register" style="display:none">
+        <form method="post" action="/people/register/">
+            {% csrf_token %}
+            <div class="groupInput">
+                <input required type="text" name="username" id="fullName" placeholder="用户名">
+                <div class="inputBorder">
+                    <input required type="password" name="passwd" id="password" placeholder="密码">
+                </div>
+                <div class="inputBorder">
+                    <input type="text" name="phoneNum" id="phoneNum" placeholder="手机号">
+                </div>
+            </div>
+            <div class="buttonWrapper">
+                <button class="signinButton" type="submit">注册</button>
+            </div>
+        </form>
+    </div>
+    <div id="loginIn">
+        <form action="/people/login/" method="post">
+            {% csrf_token %}
+            <div class="groupInput">
+                <input required type="text" name="username" id="fullName" placeholder="用户名">
+                <!-- <div class="inputBorder">
+                <input required type="text" name="phoneNum" id="phoneNum" placeholder="手机号">
+            </div>  -->
+                <div class="borderTop">
+                    <input required type="password" name="passwd" id="password" placeholder="密码">
+                </div>
+            </div>
+            <div class="buttonWrapper">
+                <button class="signinButton" type="submit">登录</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>
+<script type="text/javascript">
+    function loginIn() {
+        $("#register").hide();
+        $(".login a:nth-child(2)").removeClass("active");
+        $("#loginIn").show();
+        $(".login a:first-child").addClass("active");
+    }
+    function register() {
+        $("#loginIn").hide();
+        $(".login a:first-child").removeClass("active");
+        $("#register").show();
+        $(".login a:nth-child(2)").addClass("active");
+    }
+
+
+</script>

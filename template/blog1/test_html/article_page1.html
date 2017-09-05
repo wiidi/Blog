@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{{ article.title }}</title>
+    <link  href="../../../static/css/blog1/article_page.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<form action="/blog1/write/" method="post">
+    <div class="topHeader">
+        <ul>
+            <li><a href="/blog1/index/">首页</a></li>
+{#            <li><a href="/blog1/write/">写文章</a></li>#}
+            <li><a href="/blog1/edit/{{ article.id }}">编辑</a></li>
+{#            <li>注册</li>#}
+{#            <li>登录</li>#}
+            <div class="clear"></div>
+        </ul>
+    </div>
+    <div class="midContent">
+        <div class="article">
+            <h1 class="title">{{ article.title }}</h1>
+            <p>作者： {{ article.auth }}</p>
+            <p>
+                {{ article.content }}
+            </p>
+            <br/>
+{#            {{ article.content }}#}
+        </div>
+    </div>
+    <div class="copyright">
+        <span>© 著作权归作者所有&nbsp;&nbsp;中国地质大学（武汉）</span>
+    </div>
+    </form>
+</body>
+
+</html>

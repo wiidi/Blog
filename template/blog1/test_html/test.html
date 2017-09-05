@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="articleTitle"/>
+<input id="author"/>
+<input id="text"/>
+
+{#    <script>#}
+{#        document.write()#}
+{#    </script>#}
+</body>
+</html>
+
+<script type="text/javascript">
+    var html = {{ article|safe }};
+    document.getElementById('text').value = html['content'];
+    document.getElementById('author').value = html['auth'];
+    document.getElementById('articleTitle').value = html['title'];
+
+</script>

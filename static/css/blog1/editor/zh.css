@@ -1,0 +1,39 @@
+input {
+    background: transparent;
+    border: 1px solid #ffffff;
+    height: 25px;
+    font-size: 22px;
+}
+
+.inline {
+    display: inline;
+}
+
+.link {
+    cursor: pointer;
+    color: #00a8c6;
+    float: right;
+    margin-right: 100px;
+    font-size: 22px;
+    height: 30px;
+}
+
+.user {
+    margin-left: 100px;
+    width: 200px;
+    color: #817c80;
+    font-size: 15px;
+}
+
+.edit {
+    margin-left: 20px;
+    width: 150px;
+}
+
+.single-line {
+    white-space: nowrap;
+}
+
+#articleTitle {
+    width: 300px;
+}

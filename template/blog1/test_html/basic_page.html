@@ -1,0 +1,52 @@
+<html>
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+        {% block article_title %}
+
+        {% endblock article_title %}
+    </title>
+    <link  href="../../../static/css/blog1/article_page.css" rel="stylesheet" type="text/css">
+</head>
+
+<body >
+    <div class="topHeader">
+        <ul>
+            {% block topHeader %}
+
+            {% endblock topHeader %}
+
+            <div class="clear"></div>
+        </ul>
+    </div>
+    <div class="midContent">
+        <div class="article">
+            <h1 class="title">
+                 {% block title %}{% endblock title %}
+            </h1>
+            <div class="auth">
+            <p>
+                {% block auth %}
+                {% endblock auth %}
+            </p>
+            </div>
+            <div id="contenttext">
+{#            pre缩进问题，如果不这样写，前面会出现空格和换行，子页面同#}
+                <pre class="pre">
+                </pre>
+
+            </div>
+        </div>
+    </div>
+
+    {% block copyright %}
+    <div class="copyright">
+        <span>© 著作权归作者所有&nbsp;&nbsp;中国地质大学（武汉）</span>
+    </div>
+    {% endblock copyright %}
+</body>
+
+</html>
+

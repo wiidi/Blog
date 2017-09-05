@@ -13,8 +13,11 @@ def showBlog(request):
 
     # Blog = Blog.objects.get(id=blog_id)
 
-    return render(request,'index.html',content)
+    return render(request,'index2.html',content)
 
 def showBlogList(request):
 
     pass
+
+def test(request):
+    return render(request,'login1.html')

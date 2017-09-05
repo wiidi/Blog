@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ article }}</title>
+    <link rel="stylesheet" href="../../../static/css/blog1/style.css" type="text/css">
+</head>
+<body>
+<h1>这是博客主页</h1>
+    <form action="http://127.0.0.1:8000/blog1/write/" >
+        <input type="submit" value="写博客">
+    </form>
+    <br/>
+    <div class="title_list">
+        {% for article in articles %}
+    {#        <a href="{% url 'blog1:article_page' article.id %}">{{ article.title }}</a>#}
+            <a href="/blog1/article/{{ article.id }}">{{ article.title }}</a>
+            <br/>
+            <br/>
+        {% endfor %}
+    </div>
+    <a href="/blog1/write/">write</a>
+
+</body>
+</html>

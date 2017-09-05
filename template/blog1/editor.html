@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:contenteditable="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <title>Simple example - Editor.md examples</title>
+    <link rel="stylesheet" href="../../static/css/blog1/editor/style.css"/>
+    <link rel="stylesheet" href="../../static/css/blog1/editor/zh.css"/>
+    <link rel="stylesheet" href="../../static/css/blog1/editor/editormd.min.css"/>
+
+    <!--<link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon"/>-->
+</head>
+<body>
+<form method="post" action="/blog1/editor/">
+    {% csrf_token %}
+    <div id="layout">
+
+        <header style="height: 50px">
+
+            <input id="articleTitle" name="title" size="10" class="inputstyle keywords title" value="编辑标题"
+                   onfocus='if(this.value=="编辑标题"){this.value="";}'
+                   onblur='if(this.value==""){this.value="编辑标题";}'>
+
+            {#        <a class="inline link" onclick="publish();">发布</a>#}
+            <input type="submit" class="inline link" value="发布">
+            <div class="user inline">作者:</div>
+            <input id="author" name="author" size="10"
+                   class="edit single-line inputstyle keywords"
+                   value="编辑作者"
+                   onfocus='if(this.value=="编辑作者"){this.value="";}'
+                   onblur='if(this.value==""){this.value="编辑作者";}'>
+        </header>
+
+        <div id="test-editormd">
+            <textarea id="text" style="display:none;" name="text"></textarea>
+            {#        <input >#}
+        </div>
+
+    </div>
+</form>
+<script src="../../../static/js/editor/jquery.min.js"></script>
+<script src="../../../static/js/editor/editormd.min.js"></script>
+
+<script type="text/javascript">
+
+    var testEditor;
+    var height = window.screen.availHeight * 0.75;//下面的height用设置百分比发现没有效果.使用可见高度的75%作为文本编辑器的高度
+    //初始化编辑器配置
+    var type = [
+        "undo", "redo", "|",
+        "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
+        "h1", "h2", "h3", "h4", "h5", "h6", "|",
+        "list-ul", "list-ol", "hr", "|",
+        "link", "reference-link", "image", "code", "preformatted-text", "code-block", "datetime", "|",
+        "goto-line", "watch", "preview", "fullscreen", "clear", "search", "|",
+        "help"
+    ];
+    $(function () {
+        testEditor = editormd("test-editormd", {
+            path: "../../static/lib/",
+            height: height,
+            toolbarIcons: type,
+        });
+    });
+
+    function publish() {
+        function getTitle() {
+            return $(".title")[0].value;
+        }
+
+        function getTime() {
+            var d = new Date();
+            return d.toString();
+        }
+
+        function getAuthor() {
+            return $(".edit")[0].value;
+        }
+
+        var data = {
+            auth: getAuthor(),
+            title: getTitle(),
+            text: testEditor.getMarkdown(),
+            time: getTime()
+        };
+        var url = "/blog1/editor/";
+
+        $.post(url, data, function (result) {
+            alert(result);
+        });
+    }
+</script>
+
+</body>
+</html>

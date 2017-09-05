@@ -1,0 +1,36 @@
+{% extends 'blog1/basic_page.html' %}
+
+{% block article_title %}
+    {{ article.title }}
+{% endblock article_title %}
+
+{% block topHeader %}
+    <li><a href="/blog1/edit/{{ article.id }}">编辑</a></li>
+    <li><a href="/blog1/index/">首页</a></li>
+    {#        <li><a href="/blog1/write/">写文章</a></li>#}
+
+    {#        <li>注册</li>#}
+    {#        <li>登录</li>#}
+
+{% endblock topHeader %}
+
+{% block title %}
+    {{ article.title }}
+{% endblock title %}
+
+{% block auth %}
+    作者： {{ article.auth }}
+{% endblock auth %}
+{#            pre缩进问题，如果不这样写，前面会出现空格和换行#}
+{#{% block content %}{{ article.content }}{% endblock content %}#}
+
+{% block copyright %}
+    {{ bloack.super }}
+{% endblock copyright %}
+
+<script type="text/javascript">
+        var html = {{ article|safe }};
+{#    var html = '<h1>sdfasf</h1>';#}
+    document.getElementById('contenttext').innerHTML = html['content']['content'];
+
+</script>

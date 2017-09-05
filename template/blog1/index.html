@@ -1,15 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>{{ article }}</title>
+    <meta charset="utf-8">
+    <title>blog</title>
+    <link href="../../../static/css/blog1/index.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
-这是博客主页
-    <h1 >{{ article }}</h1>
-    <form action="http://127.0.0.1:8000/blog1/write/" >
-        <input type="submit" value="写博客">
-    </form>
+
+<div class="blog-header">
+    <div style="width: 800px height: 100%; margin: 10px auto;"></div>
+    <div class="write-btn" target="_blank" href="/writer#/">
+        <h4 style="margin: 10px;"><a class="write-btn-a" href="/blog1/editor/">写文章</a></h4>
+    </div>
+</div>
+
+<div class="main-page">
+    <div class="main-page-left">
+        {% for article in articles %}
+            <div class="pot">
+                <span class="pot_date">{{ article.pub_time }}</span>
+                {#        <a href="{% url 'blog1:article_page' article.id %}">{{ article.title }}</a>#}
+                <a href="/blog1/article/{{ article.id }}" id="article_title" class="a_class">{{ article.title }}</a>
+                {#                style="font-size: 18px ;margin: -7px 0 4px;display: inherit font-weight: 700; line-height: 1.5;"#}
+
+                <div class="box" id="">
+                    {{ article.content|truncatewords:"10"  }}
+                </div>
+
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="main-page-right">
+
+        <img src="../../static/images/blog1/right.png"/>
+        <div class="main-page-right-content">
+            <ul>
+                <li>csdn</li>
+                <li>csdn</li>
+                <li>csdn</li>
+
+            </ul>
+        </div>
+    </div>
+</div>
 
 </body>
+
+
+{#<script src="../../../static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>#}
+{#<script>#}
+{#    (function ($) {#}
+{#        $.fn.moreText = function (options) {#}
+{#            var defaults = {#}
+{#                maxLength: 500,#}
+{#                mainCell: ".box",#}
+{#                openBtn: '',#}
+{#                closeBtn: '收起'#}
+{#            }#}
+{#            return this.each(function () {#}
+{#                var _this = $(this);#}
+{##}
+{#                var opts = $.extend({}, defaults, options);#}
+{#                var maxLength = opts.maxLength;#}
+{#                var TextBox = $(opts.mainCell, _this);#}
+{#                var openBtn = opts.openBtn;#}
+{#                var closeBtn = opts.closeBtn;#}
+{##}
+{#                var countText = TextBox.html();#}
+{#                var newHtml = '';#}
+{#                if (countText.length > maxLength) {#}
+{#                    newHtml = countText.substring(0, maxLength) + '...<span class="more">' + openBtn + '</span>';#}
+{#                } else {#}
+{#                    newHtml = countText;#}
+{#                }#}
+{#                TextBox.html(newHtml);#}
+{#                TextBox.on("click", ".more", function () {#}
+{#                    if ($(this).text() == openBtn) {#}
+{#                        TextBox.html(countText + ' <span class="more">' + closeBtn + '</span>');#}
+{#                    } else {#}
+{#                        TextBox.html(newHtml);#}
+{#                    }#}
+{#                })#}
+{#            })#}
+{#        }#}
+{#    })(jQuery);#}
+{#    $(function () {#}
+{#        $(".pot ").moreText({#}
+{#            maxLength: 100, //默认最大显示字数，超过...#}
+{#            mainCell: '.box' //文字容器#}
+{#        });#}
+{#    })#}
+{#</script>#}
+
 </html>

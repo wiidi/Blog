@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../static/css/blog1/mainsite.css">
+    <script src="../../static/js/jquery.min.js"></script>
+    <script src="../../static/js/jq-search.js"></script>
+    <link href="../../../static/css/blog1/index.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!--顶端导航栏-->
+<div class="title-bar fixed">
+    <a class="inline logo" href="#">
+        <img id="main-logo" class="fixed inline logo" src="../../static/images/blog1/cloud.png"/>
+    </a>
+    <div class="inline left-center ">
+        <input class="inline search-input btn minus-top" type="text" name="q" id="q" value="" autocomplete="off"
+               placeholder="搜索">
+        <img src="../../static/images/blog1/search.png" id="search" class="inline search minus-top"/>
+    </div>
+    <a class="inline right logo center-right " href="#">
+        <div class="btn writebtn">写文章</div>
+    </a>
+    <hr/>
+</div>
+<!--右侧菜单-->
+<div id="right-side">
+    <div id="notice">
+        <h3 class="notice-title">信息栏</h3>
+        <p class="notice-textarea">&nbsp;&nbsp;公告内容</p>
+    </div>
+</div>
+
+<!--文章部分-->
+<div id="mainContent">
+<div class="main-page-left">
+        {% for article in articles %}
+            <div class="pot">
+                <span class="pot_date">{{ article.pub_time }}</span>
+                {#        <a href="{% url 'blog1:article_page' article.id %}">{{ article.title }}</a>#}
+                <a href="/blog1/article/{{ article.id }}" id="article_title" class="a_class">{{ article.title }}</a>
+                {#                style="font-size: 18px ;margin: -7px 0 4px;display: inherit font-weight: 700; line-height: 1.5;"#}
+
+                <div class="box" id="">
+{#                    <script>#}
+{#                        var ma={{ article.content|truncatewords:"10"  }};#}
+{#                        document.write(parseMarkDown(ma));#}
+{#                    </script>#}
+                    {{ article.content|truncatewords:"10"  }}
+
+                </div>
+
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    /*设置搜索内容*/
+    function search() {
+        var content = $(".search-input")[0].value;
+        if (content != "")
+            $('body').textSearch(content);
+        else {
+            $("span[rel='mark']").removeAttr("class").removeAttr("style").removeAttr("rel");
+        }
+    }
+    $('.search')[0].onclick = search;
+    $(document).keydown(function (e) {
+        if (e.keyCode == 13) {
+            search();
+        }
+    });
+
+    /**
+     * 加载右侧内容
+     */
+    $(document).ready(function () {
+        var nameList = ["项目1", "项目2", "项目3"];
+        var hrefList = ["#", "#", "#"];
+        var colorList = [
+            "#233333",
+            "#00a8c6",
+            "#9fe8e8"
+        ];
+        for (var i = 0; i < nameList.length; i++) {
+            var str = '<div class="right-block pointer" ><a class="items" href="' + hrefList[i] + '">' +
+                '<p class="text-inner" style="border-radius: 3px;background-color:' + colorList[i] + '" >'
+                + nameList[i] + '</p></a></div>';
+            $('#right-side').append(str);
+            $('#right-side').append('<p>');
+        }
+    });
+
+{#    var markDownStr={{ article.content|truncatewords:"10" }}#}
+{#    ret=parseMarkDown(markDownStr)#}
+</script>
+</body>
+</html>
